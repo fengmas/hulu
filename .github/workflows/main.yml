@@ -1,11 +1,9 @@
 name: 葫芦侠三楼自动签到
 
 on:
-  # 每天早上8点执行（UTC时间0点，北京时间8点）
   schedule:
-    - cron: '0 0 * * *'
-  # 手动触发
-  workflow_dispatch:
+    - cron: '0 0 * * *'  # 每天UTC时间0点（北京时间8点）执行
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
   build:
@@ -18,7 +16,7 @@ jobs:
       - name: 设置Python环境
         uses: actions/setup-python@v4
         with:
-          python-version: 3.10
+          python-version: 3.10  # ✅ 使用可用的Python版本
 
       - name: 安装依赖
         run: |
