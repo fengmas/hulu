@@ -2,11 +2,12 @@ name: Keepalive Workflow
 
 on:
   schedule:
-    - cron: "0 0 * * *"   # 原有的定时触发
-  workflow_dispatch:      # 👈 新增这一行，允许手动点击运行
+    - cron: "0 0 * * *"
+  workflow_dispatch:   # 保留手动触发便于测试
 
 permissions:
   actions: write
+  contents: write      # 👈 关键：允许读取和写入仓库文件
 
 jobs:
   keepalive-job:
@@ -14,3 +15,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: gautamkrishnar/keepalive-workflow@v2
+        # 默认使用 GITHUB_TOKEN，有了 contents: write 就可以正常工作
