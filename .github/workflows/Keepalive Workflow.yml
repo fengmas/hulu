@@ -2,15 +2,14 @@ name: Keepalive Workflow
 
 on:
   schedule:
-    # 每天运行一次，检查是否需要保活
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * *"   # 原有的定时触发
+  workflow_dispatch:      # 👈 新增这一行，允许手动点击运行
 
 permissions:
   actions: write
 
 jobs:
   keepalive-job:
-    name: Keepalive Workflow
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
